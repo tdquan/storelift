@@ -8,15 +8,23 @@ class ProductService:
 	""" Product related operations """
 
 	def create_product(self, data):
-		public_id = str(uuid.uuid4())
-		price = data['price']
-		name = data['name']
-		product = Product(name=name, price=price, public_id=public_id)
+		product = Product(
+			public_id = str(uuid.uuid4()),
+			name = data['name'],
+			price = data['price']
+		)
+
 		if save(product):
-			response = { 'status': 'success', 'message': 'Product created' }
+			response = {
+				'status': 'success',
+				'message': 'Product created'
+			}
 			return response, 201
 		else:
-			response = { 'status': 'failure', 'message': 'Failed to create product' }
+			response = {
+				'status': 'failure',
+				'message': 'Failed to create product'
+			}
 			return response, 409
 
 	def all_products(self):

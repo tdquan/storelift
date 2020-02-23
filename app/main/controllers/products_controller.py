@@ -1,15 +1,15 @@
 from flask import request
 from flask_restplus import Resource
 
-from app.main.utils.dto import ProductDto
+from app.main.utils.dto import ProductDTO
 from app.main.services.product_service import ProductService
 
-api = ProductDto.api
-_product = ProductDto.product
+api = ProductDTO.api
+_product = ProductDTO.product
 service = ProductService()
 
 @api.route('/', strict_slashes=False)
-class ProductList(Resource):
+class Products(Resource):
 	@api.doc('List of all products')
 	@api.marshal_list_with(_product, envelope='data')
 	def get(self):
