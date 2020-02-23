@@ -1,8 +1,8 @@
 import uuid
 from random import random, randint
 
-from app.main import db
 from app.main.models.product import Product
+from .shared import save
 
 class ProductService:
 	""" Product related operations """
@@ -12,7 +12,7 @@ class ProductService:
 		price = data['price']
 		name = data['name']
 		product = Product(name=name, price=price, public_id=public_id)
-		if self.save(product):
+		if save(product):
 			response = { 'status': 'success', 'message': 'Product created' }
 			return response, 201
 		else:
@@ -23,17 +23,4 @@ class ProductService:
 		return Product.query.all()
 
 	def find_product(self, public_id):
-		return Product.query.filter_by(public_id=public_id)
-
-	def save(self, data):
-		committed = True
-		db.session.add(data)
-		try:
-			db.session.commit()
-		except Exception as e:
-			print(e)
-			db.session.rollback()
-			db.session.flush()
-			committed = False
-
-		return committed
+		return Product.query.filter_by(public_id=public_id).first()

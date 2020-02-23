@@ -7,6 +7,7 @@ class Visit(db.Model):
 	__tablename__ = 'visit'
 
 	id 					= db.Column(db.Integer, primary_key=True, autoincrement=True)
+	public_id 	= db.Column(db.String(100), unique=True)
 	time_enter	= db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 	time_exit		= db.Column(db.DateTime)
 	user_id			= db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -15,4 +16,4 @@ class Visit(db.Model):
 
 	@property
 	def __repr__(self):
-		return "<Visit: '{id}', time_enter: {time_enter}, user_id: {cart_id}>".format(id=self.id, time_enter=self.time_enter, user_id=self.user_id)
+		return "<Visit: '{id}', time_enter: {time_enter}, time_exit: {time_exit}, user_id: {cart_id}>".format(id=self.id, time_enter=self.time_enter, time_exit=self.time_exit, user_id=self.user_id)
