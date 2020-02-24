@@ -14,11 +14,9 @@ class VisitService:
 			time_enter = datetime.utcnow(),
 			user_id = data['user_id']
 		)
+		save(visit)
 
-		if save(visit):
-			return visit
-		else:
-			return None
+		return visit
 
 	def end_visit(self, public_id):
 		visit = self.find_visit(public_id)

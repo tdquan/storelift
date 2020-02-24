@@ -9,3 +9,4 @@ class Product(db.Model):
 	price			= db.Column(db.Integer, nullable=False, default=0)
 	cart_id		= db.Column(db.Integer, db.ForeignKey('cart.id'))
 	public_id	= db.Column(db.String(100), unique=True)
+	available	= db.Column(db.Boolean, default=True)
