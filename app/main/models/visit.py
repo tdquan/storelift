@@ -12,8 +12,4 @@ class Visit(db.Model):
 	time_exit		= db.Column(db.DateTime)
 	user_id			= db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 	cart				= db.relationship('Cart', backref='visit', uselist=False)
-	products		= db.relationship('Product', secondary='cart', viewonly=True)
-
-	@property
-	def __repr__(self):
-		return "<Visit: '{id}', time_enter: {time_enter}, time_exit: {time_exit}, user_id: {cart_id}>".format(id=self.id, time_enter=self.time_enter, time_exit=self.time_exit, user_id=self.user_id)
+	products		= db.relationship('Product', secondary='cart', viewonly=True, lazy='dynamic')

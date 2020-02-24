@@ -9,7 +9,3 @@ class Product(db.Model):
 	price			= db.Column(db.Integer, nullable=False, default=0)
 	cart_id		= db.Column(db.Integer, db.ForeignKey('cart.id'))
 	public_id	= db.Column(db.String(100), unique=True)
-
-	@property
-	def __repr__(self):
-		return "<Product: '{public_id}', name: '{name}', price: {price}, cart_id: {cart_id}>".format(public_id=self.public_id, name=self.name, cart_id=self.cart_id, price=self.price)

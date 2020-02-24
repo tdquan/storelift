@@ -10,23 +10,15 @@ class VisitService:
 
 	def create_visit(self, data):
 		visit = Visit(
-			public_id = uuid.uuid4(),
+			public_id = str(uuid.uuid4()),
 			time_enter = datetime.utcnow(),
 			user_id = data['user_id']
 		)
 
 		if save(visit):
-			response = {
-				'status': 'success',
-				'message': 'User entered'
-			}
-			return response, 201
+			return visit
 		else:
-			response = {
-				'status': 'failure',
-				'message': 'There was some error. Please try again.'
-			}
-			return response, 409
+			return None
 
 	def end_visit(self, public_id):
 		visit = self.find_visit(public_id)

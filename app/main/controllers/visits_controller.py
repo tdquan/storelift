@@ -15,12 +15,3 @@ class Visits(Resource):
 	def get(self):
 		""" List all visits """
 		return service.all_visits()
-
-	@api.doc('When user enters the store')
-	@api.response(201, 'User entered')
-	@api.response(409, 'User failed to enter')
-	@api.expect(_visit, validate=True)
-	def post(self):
-		""" Create a new visit """
-		data = request.json
-		return service.create_visit(data)
