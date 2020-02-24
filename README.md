@@ -21,9 +21,15 @@ python manage.py run
 
 Swagger API interface will be then available for testing
 
-### Run the script
+### Run the script:
 
 - With the server running, open another shell, navigate to the project directory and run:
 ```shell
 python script.py
 ```
+
+### Things can be added:
+- Issue expirable token for every start of a visit. Only allow 1 active visit at a time.
+- Token can be used for every api call to provide security.
+- Other models to deal with payment/transaction
+- Availability of product is False when the product is added to cart
